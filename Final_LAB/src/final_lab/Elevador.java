@@ -1,33 +1,36 @@
 package final_lab;
 
+import java.util.Stack;
+
 
 public class Elevador {
-    private int primerpiso=1;
+      private int pisoActual;
+    private Stack<Llamada> llamadas;
 
-    public int getPrimerpiso() {
-        return primerpiso;
+    public Elevador() {
+        pisoActual = 1;
+        llamadas = new Stack<>();
     }
-    
 
-    public void setPrimerpiso(int primerpiso) {
-        this.primerpiso = primerpiso;
+    public void atenderLlamada(Llamada llamada) {
+        llamadas.push(llamada);
     }
-    
-     public Elevador() {
-        primerpiso = 1; 
-    }
-     
-      public void MoveraPiso(int pisoDestino) {
-        if (pisoDestino >= 1 && pisoDestino <= 10) {
-            System.out.println("Moviendo el ascensor desde el piso " + pisoDestino + " al piso " + pisoDestino);
-            primerpiso = pisoDestino;
-        } else {
-            System.out.println("Piso inválido. Debe ser un número entre 1 y 10.");
+
+    public void mover() {
+        if (!llamadas.isEmpty()) {
+            Llamada llamada = llamadas.pop();
+            int destino = llamada.getPisoDestino();
+            
+            if (destino > pisoActual) {
+                System.out.println("Subiendo al piso " + destino);
+                pisoActual = destino;
+            } else if (destino < pisoActual) {
+                System.out.println("Bajando al piso " + destino);
+                pisoActual = destino;
+            }
+            
+            System.out.println("Llegaste al piso " + pisoActual);
         }
-    }
-         public int getCurrentFloor() {
-        return primerpiso;
-    }
-         
+    } 
 
 }
