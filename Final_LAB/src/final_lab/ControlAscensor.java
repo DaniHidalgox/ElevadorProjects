@@ -4,6 +4,8 @@
  */
 package final_lab;
 
+import final_lab.Llamada;
+
 /**
  *
  * @author Student

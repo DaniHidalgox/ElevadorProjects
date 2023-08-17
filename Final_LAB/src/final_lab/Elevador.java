@@ -21,7 +21,7 @@ public class Elevador implements ControlAscensor {
         if (!llamadas.isEmpty()) {
             Llamada llamada = llamadas.pop();
             int destino = llamada.getPisoDestino();
-            
+
             if (destino > pisoActual) {
                 System.out.println("Subiendo al piso " + destino);
                 pisoActual = destino;
@@ -29,7 +29,7 @@ public class Elevador implements ControlAscensor {
                 System.out.println("Bajando al piso " + destino);
                 pisoActual = destino;
             }
-            
+
             System.out.println("Llegaste al piso " + pisoActual);
         }
     }
