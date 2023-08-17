@@ -1,6 +1,7 @@
 package final_lab;
 
 import java.util.Stack;
+import javax.swing.JOptionPane;
 
 public class Elevador implements ControlAscensor {
     private int pisoActual;
@@ -9,6 +10,22 @@ public class Elevador implements ControlAscensor {
     public Elevador() {
         pisoActual = 1;
         llamadas = new Stack<>();
+    }
+
+    public int getPisoActual() {
+        return pisoActual;
+    }
+
+    public void setPisoActual(int pisoActual) {
+        this.pisoActual = pisoActual;
+    }
+
+    public Stack<Llamada> getLlamadas() {
+        return llamadas;
+    }
+
+    public void setLlamadas(Stack<Llamada> llamadas) {
+        this.llamadas = llamadas;
     }
 
     @Override
@@ -23,14 +40,14 @@ public class Elevador implements ControlAscensor {
             int destino = llamada.getPisoDestino();
 
             if (destino > pisoActual) {
-                System.out.println("Subiendo al piso " + destino);
+                JOptionPane.showMessageDialog(null, "Subiendo al piso " + destino);
                 pisoActual = destino;
             } else if (destino < pisoActual) {
-                System.out.println("Bajando al piso " + destino);
+                JOptionPane.showMessageDialog(null, "Bajando al piso " + destino);
                 pisoActual = destino;
             }
 
-            System.out.println("Llegaste al piso " + pisoActual);
+            JOptionPane.showMessageDialog(null, "Llegaste al piso " + pisoActual);
         }
     }
 }

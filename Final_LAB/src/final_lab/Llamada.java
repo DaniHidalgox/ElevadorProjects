@@ -3,7 +3,6 @@ package final_lab;
 
 
 public class Llamada {
-      
     private int pisoDestino;
 
     public Llamada(int pisoDestino) {
@@ -13,6 +12,4 @@ public class Llamada {
     public int getPisoDestino() {
         return pisoDestino;
     }
-    
-    
 }
