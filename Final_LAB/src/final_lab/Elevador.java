@@ -2,9 +2,8 @@ package final_lab;
 
 import java.util.Stack;
 
-
-public class Elevador {
-      private int pisoActual;
+public class Elevador implements ControlAscensor {
+    private int pisoActual;
     private Stack<Llamada> llamadas;
 
     public Elevador() {
@@ -12,10 +11,12 @@ public class Elevador {
         llamadas = new Stack<>();
     }
 
+    @Override
     public void atenderLlamada(Llamada llamada) {
         llamadas.push(llamada);
     }
 
+    @Override
     public void mover() {
         if (!llamadas.isEmpty()) {
             Llamada llamada = llamadas.pop();
@@ -31,6 +32,5 @@ public class Elevador {
             
             System.out.println("Llegaste al piso " + pisoActual);
         }
-    } 
-
+    }
 }
