@@ -1,14 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+package final_lab;
 
-/**
- *
- * @author Daniel Hidalgo
- */
+
 public class Elevador {
     private int primerpiso=1;
+
+    public int getPrimerpiso() {
+        return primerpiso;
+    }
+    
+
+    public void setPrimerpiso(int primerpiso) {
+        this.primerpiso = primerpiso;
+    }
     
      public Elevador() {
         primerpiso = 1; 
@@ -25,5 +28,6 @@ public class Elevador {
          public int getCurrentFloor() {
         return primerpiso;
     }
+         
 
 }
