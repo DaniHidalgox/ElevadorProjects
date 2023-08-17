@@ -30,9 +30,9 @@ Elevador ele=new Elevador();
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtPisos = new javax.swing.JTextField();
         btnSubirPiso = new javax.swing.JButton();
         btnBajarPiso = new javax.swing.JButton();
+        txtPisoActual = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,13 +59,13 @@ Elevador ele=new Elevador();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(txtPisoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSubirPiso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBajarPiso)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,9 +73,9 @@ Elevador ele=new Elevador();
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSubirPiso)
-                    .addComponent(btnBajarPiso))
+                    .addComponent(btnBajarPiso)
+                    .addComponent(txtPisoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -83,15 +83,28 @@ Elevador ele=new Elevador();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubirPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirPisoActionPerformed
-       int pisoDestino = Integer.parseInt(txtPisos.getText());
-        ele.MoveraPiso(pisoDestino);
-        actualizarPisoActual();
+       try {
+            int pisoDestino = ele.getCurrentFloor() + 1;
+            ele.MoveraPiso(pisoDestino);
+            actualizarPisoActual();
+            JOptionPane.showMessageDialog(this, "Piso actual: " + pisoDestino, "Información de Piso", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    
     }//GEN-LAST:event_btnSubirPisoActionPerformed
 
     private void btnBajarPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajarPisoActionPerformed
-         int pisoDestino = Integer.parseInt(txtPisos.getText());
-        ele.MoveraPiso(pisoDestino);
-        actualizarPisoActual();
+        try {
+            int pisoDestino = Integer.parseInt(txtPisoActual.getText());
+            ele.MoveraPiso(pisoDestino);
+            actualizarPisoActual();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido para el piso.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnBajarPisoActionPerformed
   private void actualizarPisoActual() {
         int pisoActual = ele.getCurrentFloor();
@@ -136,6 +149,6 @@ Elevador ele=new Elevador();
     private javax.swing.JButton btnBajarPiso;
     private javax.swing.JButton btnSubirPiso;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtPisos;
+    private javax.swing.JTextField txtPisoActual;
     // End of variables declaration//GEN-END:variables
 }
